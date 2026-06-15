@@ -1,0 +1,38 @@
+body {
+  margin: 0;
+  font-family: Arial;
+  text-align: center;
+  background: linear-gradient(135deg,#ffd6e0,#dff5e1);
+}
+
+.container {
+  padding: 20px;
+}
+
+h1 {
+  color: #b76e79;
+}
+
+input, textarea {
+  width: 90%;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+button {
+  padding: 10px 20px;
+  background: #b76e79;
+  color: white;
+  border: none;
+  border-radius: 10px;
+}
+
+video {
+  width: 100%;
+  border-radius: 10px;
+}
+
+#countdown {
+  font-size: 60px;
+  color: #b76e79;
+}
