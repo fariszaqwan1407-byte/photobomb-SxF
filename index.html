@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wedding Photobomb</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+  <h1>Terima Kasih Hadir</h1>
+  <h2>Faris ❤️ Nurshafiqah</h2>
+  <p>27 September 2026</p>
+
+  <input id="name" placeholder="Nama Tetamu (optional)">
+  <textarea id="message" placeholder="Ucapan untuk pengantin"></textarea>
+
+  <button id="startBtn">Mula Ambil Gambar</button>
+
+  <div id="cameraBox" style="display:none;">
+    <video id="video" autoplay playsinline></video>
+    <canvas id="canvas"></canvas>
+    <h1 id="countdown"></h1>
+    <button id="captureBtn">Capture</button>
+  </div>
+
+  <div id="result"></div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
