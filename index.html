@@ -1,37 +1,69 @@
 <!DOCTYPE html>
-<html lang="ms">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Wedding Photobomb</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Photobomb</title>
 </head>
-
 <body>
 
-<div class="container">
+<h2>Ambil Gambar</h2>
 
-  <h1>Terima Kasih Hadir</h1>
-  <h2>Faris ❤️ Nurshafiqah</h2>
-  <p>27 September 2026</p>
+<video id="video" autoplay playsinline style="width:100%; max-width:400px;"></video>
+<br>
 
-  <input id="name" placeholder="Nama Tetamu (optional)">
-  <textarea id="message" placeholder="Ucapan untuk pengantin"></textarea>
+<button onclick="capture()">Capture</button>
 
-  <button id="startBtn">Mula Ambil Gambar</button>
+<br><br>
 
-  <div id="cameraBox" style="display:none;">
-    <video id="video" autoplay playsinline></video>
-    <canvas id="canvas"></canvas>
-    <h1 id="countdown"></h1>
-    <button id="captureBtn">Capture</button>
-  </div>
+<img id="preview" style="width:100%; max-width:400px; display:none;" />
 
-  <div id="result"></div>
+<br><br>
 
-</div>
+<button id="submitBtn" onclick="submitPhoto()" style="display:none;">Submit</button>
 
-<script src="script.js"></script>
+<canvas id="canvas" style="display:none;"></canvas>
+
+<script>
+const video = document.getElementById('video');
+const canvas = document.getElementById('canvas');
+const preview = document.getElementById('preview');
+const submitBtn = document.getElementById('submitBtn');
+
+// buka camera
+navigator.mediaDevices.getUserMedia({ video: true })
+.then(stream => {
+    video.srcObject = stream;
+});
+
+// ambil gambar
+function capture() {
+    const context = canvas.getContext('2d');
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+
+    context.drawImage(video, 0, 0);
+
+    const imageData = canvas.toDataURL('image/png');
+
+    preview.src = imageData;
+    preview.style.display = 'block';
+
+    submitBtn.style.display = 'block';
+}
+
+// submit (nanti connect Google Script kau)
+function submitPhoto() {
+    const imageData = canvas.toDataURL('image/png');
+
+    fetch("YOUR_GOOGLE_SCRIPT_URL", {
+        method: "POST",
+        body: JSON.stringify({ image: imageData })
+    })
+    .then(res => alert("Berjaya upload!"))
+    .catch(err => alert("Error upload"));
+}
+</script>
 
 </body>
 </html>
